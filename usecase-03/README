@@ -1,0 +1,12 @@
+# NumPy is the most popular library for Python. I won't use it, because it needs some advanced knowledge to get it understood.
+# I use Maven to get all required packages and dependencies installed, just like we do with Java.
+# To make a Python application distributable it's recommended to use venv (virtual environment). The latter is a collections of scripts and
+symbolic links.
+
+Let’s go through this. First, we create a Context.Builder and request the "python" language to be available. (More languages are implicitly enabled. For example, Python depends on the "llvm" language for its C extension support.) Next, we set the flag to allow all access to native code, the file system, etc. It's ok for now to start with all permissions to get things going and whittle down to what we need later.
+
+The two option calls go hand in hand and need a bit more Python background. The Python executable on your machine always, as part of its startup code, executes the equivalent of import site. The site module is responsible for setting up the package paths for user and system packages, as well as discovering if the executable is inside a virtual environment and then setting the package paths accordingly.
+
+#Schwierigkeiten:
+    ##Kryptische Fehlermeldungen der Gastsprachen
+    ##Man muss sich mit den Eigenheiten der einzelnen Sprachen/Modulsysteme/Build-Prozesse/TestLibraries auseinandersetzen

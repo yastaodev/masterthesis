@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/master-thesis.iml" filepath="$PROJECT_DIR$/master-thesis.iml" />
       <module fileurl="file://$PROJECT_DIR$/usecase-01.iml" filepath="$PROJECT_DIR$/usecase-01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/usecase-02.iml" filepath="$PROJECT_DIR$/usecase-02.iml" />
     </modules>
   </component>
 </project>
