@@ -10,3 +10,6 @@ The two option calls go hand in hand and need a bit more Python background. The 
 #Schwierigkeiten:
     ##Kryptische Fehlermeldungen der Gastsprachen
     ##Man muss sich mit den Eigenheiten der einzelnen Sprachen/Modulsysteme/Build-Prozesse/TestLibraries auseinandersetzen
+    ##Libraries die nicht mehr kompatibel sind, etc.
+
+# I have to explain what is a python virtual environment and why to use it

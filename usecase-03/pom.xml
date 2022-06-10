@@ -7,6 +7,14 @@
     <groupId>com.yast.masterthesis</groupId>
     <artifactId>usecase-03</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-all</artifactId>
+            <version>1.14</version>
+            <type>pom</type>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -97,7 +105,7 @@
                             <arguments>
                                 <argument>-classpath</argument>
                                 <classpath/>
-                                <argument>com.yast.masterthesis.Main</argument>
+                                <argument>com.yast.masterthesis.usecase03.Main</argument>
                             </arguments>
                         </configuration>
                     </plugin>
