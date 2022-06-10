@@ -1,4 +1,6 @@
-# NumPy is the most popular library for Python. I won't use it, because it needs some advanced knowledge to get it understood.
+# NumPy is the most popular library for Python and that is for a reason. I didn't want to use it, because it needs some advanced knowledge to get
+ it understood.
+However I introduced a little example to show how it works.
 # I use Maven to get all required packages and dependencies installed, just like we do with Java.
 # To make a Python application distributable it's recommended to use venv (virtual environment). The latter is a collections of scripts and
 symbolic links.
@@ -11,5 +13,7 @@ The two option calls go hand in hand and need a bit more Python background. The 
     ##Kryptische Fehlermeldungen der Gastsprachen
     ##Man muss sich mit den Eigenheiten der einzelnen Sprachen/Modulsysteme/Build-Prozesse/TestLibraries auseinandersetzen
     ##Libraries die nicht mehr kompatibel sind, etc.
-
+    ## I had problems with resolving paths, etc.
+    ##Packages/Module that cause problems. For many of them there is already patched versions, but not for all..
 # I have to explain what is a python virtual environment and why to use it
+

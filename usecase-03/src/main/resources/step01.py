@@ -1,7 +1,14 @@
-#improting the module
-import site
-import qrcode
+import numpy as np
 from PIL import Image
+
+img = np.zeros([400,300,3], dtype=np.uint8)
+img.fill(255) # or img[:] = 255
+im = Image.fromarray(img) #convert numpy array to image
+im.save('/opt/work/workspaces/idea/master-thesis/usecase-03/target/empty.png')
+
+#improting the module
+import qrcode
+
 
 qr = qrcode.QRCode(
     version=12,
