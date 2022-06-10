@@ -17,3 +17,5 @@ The two option calls go hand in hand and need a bit more Python background. The 
     ##Packages/Module that cause problems. For many of them there is already patched versions, but not for all..
 # I have to explain what is a python virtual environment and why to use it
 
+# Man muss Python-Funktionen annotieren, die man exportieren möchte, sonst sind sie in den PolyglotBindingsMemberKeys nicht enthalten
+

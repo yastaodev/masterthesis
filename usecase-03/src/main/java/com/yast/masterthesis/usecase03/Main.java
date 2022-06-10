@@ -85,7 +85,9 @@ public class Main {
                 throw new RuntimeException(e);
             }
             context.eval(source);
-            context.getPolyglotBindings().getMemberKeys().forEach(System.out::println);
+            Value function = context.getPolyglotBindings().getMember("watermark_photo");
+            function.execute("/opt/work/workspaces/idea/master-thesis/usecase-03/target/prefinal.png", "/opt/work/workspaces/idea/master-thesis/usecase-03/src/main/resources/stamp.png", "/opt/work/workspaces/idea/master-thesis/usecase-03/target/final.png");
+
         }
 
 
