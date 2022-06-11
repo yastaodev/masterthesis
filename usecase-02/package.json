@@ -1,9 +1,17 @@
 {
-  "devDependencies": {
-    "jest": "^23.6.0",
-    "@types/jest": "^23.3.12"
-  },
+  "name": "usecase-02",
+  "version": "1.0.0",
+  "description": "No description",
+  "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "mocha --reporter spec"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.6",
+    "express": "^4.18.1",
+    "mocha": "^10.0.0",
+    "request": "^2.88.2"
   }
 }
