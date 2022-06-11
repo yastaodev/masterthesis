@@ -1,0 +1,23 @@
+In diesem Fall ist es einfach: kleine Funktionen, man kann einfach die JS Funktionen in Java Funktionen wrappen
+und den Rückgabewert der Java-Funktion prüfen.
+Testeinheit ist die einzelne Methode
+
+Anders sieht es aus, wenn die aufgerufenen JS Funktionen lang und kompliziert sind. Die muss man dann selbst testen.
+Die Frage ist:
+    1. Testet man sie in JS mit JS-Tools?
+    2. Oder man nutzt Polyglot-API in JUnit und ruft die einzelnen JS-Funktionen als Members auf
+        bedeutet: JEDES MAL muss der Context neu erstellt werden
+        dafür hat man aber das vertraute Tooling.
+
+Was ist wenn die Tests bereits in der Gastsprache existieren?
+Wie und wo führt man sie aus?
+
+### Erklaeren CommonJS Modules und ES Modules, und experimentelle Funktion require
+
+## Probleme mit den Strings, wie bei Reflection (Am Besten die Probleme der Reflection wiedergeben): z.B. wie sieht es aus wenn der Name der
+Funktion/Member sich ändert? Von der IDE bekommt man keinen Hinweis.
+    Außerdem bekommt man keine Autocompletion, wenn z.B. Methoden von java.math.BigInteger in Javascript-Code
+    z.B. hier erkennt die IDE die Methode multiply nicht and keeps showing annoying warnings
+        console.log(new BigIntegerClass("10").multiply(new BigIntegerClass(lyToKmAsString)));
+
+

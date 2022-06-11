@@ -19,3 +19,10 @@ The two option calls go hand in hand and need a bit more Python background. The 
 
 # Man muss Python-Funktionen annotieren, die man exportieren möchte, sonst sind sie in den PolyglotBindingsMemberKeys nicht enthalten
 
+# Asserts:
+    - Image checksum, size, colors are exactly the same
+# Hier sollen Tests aus Java angestoßen werden, dann die von Python, dann zurück
+    Java Test triggert Python Test, und wenn dieser fertig ist, der gibt sein Ergebnis an den JavaTest zurück.
+    Wenn Python Test fehlschlägt, dann soll der JavaTest auch fehlschlagen
+    Wenn der UnitTest in der Gastsprache (z.b. NodeJs) fehlschlägt, wie bekommt man das ganze Ergebnis (Bei mocha z.B. sehr schön formatiert)
+    Wenn Test fehlschlägt, führt man weiter aus, oder bricht man das ganze ab

@@ -1,0 +1,42 @@
+
+
+!!!!!!!!!!!!! Alle README anpassen vor der Abgabe
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+
+Conversion of Method Arguments:
+    https://www.graalvm.org/22.0/reference-manual/js/JavaInteroperability/#conversion-of-method-arguments
+Selection of Method:
+    https://www.graalvm.org/22.0/reference-manual/js/JavaInteroperability/#selection-of-method
+Exceptions:
+    https://www.graalvm.org/22.0/reference-manual/js/JavaInteroperability/#exceptions
+
+Input: Light years/Kilometers
+Convert light years to kilometers:
+Convert kilometers to light years:
+    Use Java.Type(java.math.BigInteger) to calculate the huge distances to galaxies in Kilometers
+    Use Java.Type(java.io.File) to write the result into a file
+Find out how long a Human, a Cheetah, a Train, a Airplane need to get to the target
+Show the comparison on an R graph
+Print the conversion result and the svg to a pdf using NodeJS
+
+# Besonderheit: Hier wird statt einen Methodenaufruf, direkt der Datentyp aus Java verwendet
+    Wird zu String umgewandelt, da sonst zu Datenverlust führen kann
+# Frage: Was ist nun die Testeinheit?
+Hier
+Für die Präsentation: Wie man sieht, es gibt hier keine einzige Java-Klasse, trotzdem können wir auf Java Funktionen zugreifen
+
+https://semaphoreci.com/community/tutorials/getting-started-with-node-js-and-mocha
+Mocha is BDD
+We'll install our testing framework, and an expectation library called Chai that serves as a nice replacement for Node’s standard assert function.
+$ npm install --save mocha chai
+Note that we are using the --save option to automatically save these dependencies in our package.json file.
+During the server testing phase, we will need a way to send HTTP requests. Request is an excellent choice.
+Finally, we will also need the Express package that defines a simple DSL (domain-specific language) for routing and handling incoming HTTP
+requests.
+The following command is used to invoke the Mocha binary installed locally in the ./node_modules directory:
+$ npx mocha --reporter spec
+
+
+Ausführung mit npm nutzt das native Image: Startup schnell, aber keine Graal-JIT-Compiler
+    mit npm --jvm: Startup langsam, dafür JIT-Kompilierung
+    Polyglot funzt nur mit --jvm in JVM Mode oder --polyglot in Native mode
