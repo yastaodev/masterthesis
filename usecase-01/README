@@ -15,9 +15,27 @@ Wie und wo führt man sie aus?
 ### Erklaeren CommonJS Modules und ES Modules, und experimentelle Funktion require
 
 ## Probleme mit den Strings, wie bei Reflection (Am Besten die Probleme der Reflection wiedergeben): z.B. wie sieht es aus wenn der Name der
-Funktion/Member sich ändert? Von der IDE bekommt man keinen Hinweis.
+Funktion/Member sich ändert? Von der IDE bekommt man keinen Hinweis. No automatic error checking
     Außerdem bekommt man keine Autocompletion, wenn z.B. Methoden von java.math.BigInteger in Javascript-Code
     z.B. hier erkennt die IDE die Methode multiply nicht and keeps showing annoying warnings
         console.log(new BigIntegerClass("10").multiply(new BigIntegerClass(lyToKmAsString)));
+## Probleme mit dem Refactoring: Riesenproblem
+## Probleme mit experimentellen Features: Compiler, Machine CPU not supported,etc, manches funzt nicht mit native image distributioninsta
+## Probleme: Ganz viele Packages müssen installiert werden, z.B. bei ggplot2, fast eine Stunde um weitere Dependencies zu installieren
+    By Python und R: Ubuntu-Pakete mussten installiert werden, um irgendwelche Funtkionen nutzen zu können
+
+## Ich habe keine einzige Quelle gefunden, die das Testen von polyglotten Apps zeigt, no academic research
+    ## Stattdessen Focus auf Unit-Tests für Native Images
+
+
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Siehe Abschnitt 5.2 in http://theuntitledblog.com/wp-content/uploads/2008/08/polyglot_programming-a_business_perspective.pdf
+Very important approach: Ist das nicht besser, wenn die Tests so klein und übersichtlich sind und die Ausgaben aussagekräftig sind?
+The Ruby code is much more concise, and the intent of the code is much clearer,
+because the programming language provides the freedom to remove unnecessary syntax.
+Because the testing code will not be run in production, the runtime performance of the language used is not important, but rather programming productivity. Using an interpreted language also enables new tests to be run without
+compilation.
+Probleme: Debuggen in Guest language
 
 

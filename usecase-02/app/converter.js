@@ -11,5 +11,3 @@ module.exports.fromKmToLy = function (km) {
     var result = new BigDecimalClass(km).multiply(new BigDecimalClass(lyKmFactorAsString));
     return result.toString();
 }
-
-//module.exports = {fromLyToKm, fromKmToLy};
