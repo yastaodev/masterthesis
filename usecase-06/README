@@ -1,0 +1,7 @@
+JS calls C and C++
+    . C: Addition/Substraktion
+    . C++: Multiplikation/Division
+Bewusst redimentäre und simple Beispiele, um nicht mit Zeigern und Memory Management zu hantieren
+Dynamic languages like JavaScript usually access object members by name. Since normally names are not preserved in LLVM bitcode, it must be
+compiled with debug information enabled (the LLVM toolchain shipped with GraalVM will automatically enable debugging information).
+https://www.graalvm.org/22.1/reference-manual/llvm/Interoperability/

@@ -1,0 +1,19 @@
+Poly-Polyglot
+Ruby ruft Python auf, Python ruft WebAssembly auf
+Idee: 2 mathematische Verfahren, z.B.
+    . returns Integer: Zählen von Wörtern in einem Text
+    . returns Text: Entfernen aller Leerzeichen
+
+https://www.graalvm.org/22.1/reference-manual/wasm/
+https://medium.com/graalvm/announcing-graalwasm-a-webassembly-engine-in-graalvm-25cd0400a7f2
+
+
+Interessant: Testen des Ergebnisses:
+    nur in Java?
+    nur in Python?
+    nur in Assembly?
+    oder in allen Sprachen, um die Redundanz zu erhalten?
+    white-box vs black-box
+   Nur das Ergebnis zu testen bei kleinen Funktionen würde noch gehen, sobald der aufgerufene Code länger und komplizierter wird, muss dieser
+   separat getestet werden.
+
