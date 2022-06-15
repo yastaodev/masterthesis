@@ -42,3 +42,14 @@ Ausführung mit npm nutzt das native Image: Startup schnell, aber keine Graal-JI
     Polyglot funzt nur mit --jvm in JVM Mode oder --polyglot in Native mode
 
 ## Wenn für Java JUnit quasi Standard ist, ist bei Node/JS viel Konkurrenz: Mocha, Jest, Jasmine, etc.
+
+# In der Implementierung habe ich mit Absicht den kleinen R-Snippet eingebettet und nicht outsourced.
+Hier merkt man beim Testen, dass:
+    Entweder das erzeugte Bild vergleichen bzw. den Hash davon: Hier hat man keinen Zugriff auf die Interna des R-Codes (Black Box)
+    Oder den Snippet im Test einbetten und polyglot aufrufen, damit man Zugriff auf die Interna erlangt
+
+# Es wird der JS String noch mal in R Double umgewandelt
+
+# NodeJS kann Datei mit dem Default-OS-Programm nicht ohne Weiteres öffnen, daher greifen wir noch mal auf Java zu
+
+# Hier kann man sogar in JS mit Java-Klassen und Objekten arbeiten, als wären sie die eigenen

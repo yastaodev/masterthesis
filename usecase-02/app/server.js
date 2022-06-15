@@ -14,6 +14,6 @@ app.get("/fromKmToLy", function (req, res) {
     res.send(ly);
 });
 
-stats.getStatsKm(50);
+stats.plotStats(1);
 
 app.listen(3000);

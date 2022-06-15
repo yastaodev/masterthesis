@@ -20,6 +20,13 @@ Funktion/Member sich ändert? Von der IDE bekommt man keinen Hinweis. No automat
     z.B. hier erkennt die IDE die Methode multiply nicht and keeps showing annoying warnings
         console.log(new BigIntegerClass("10").multiply(new BigIntegerClass(lyToKmAsString)));
 ## Probleme mit dem Refactoring: Riesenproblem
+## Probleme mit den Exceptions: kommen nicht durch, können nicht geparst/übersetzt werden, steht sowas: Man kann damit nicht viel anfangen
+unknown:0
+unknown
+^
+[Error: parse exception] oder
+[Error: Error: object 'Objects' not found]
+
 ## Probleme mit experimentellen Features: Compiler, Machine CPU not supported,etc, manches funzt nicht mit native image distributioninsta
 ## Probleme: Ganz viele Packages müssen installiert werden, z.B. bei ggplot2, fast eine Stunde um weitere Dependencies zu installieren
     By Python und R: Ubuntu-Pakete mussten installiert werden, um irgendwelche Funtkionen nutzen zu können
