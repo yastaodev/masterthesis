@@ -13,7 +13,10 @@ app.get("/fromKmToLy", function (req, res) {
     var ly = converter.fromKmToLy(String(req.query.km));
     res.send(ly);
 });
-
-stats.plotStats(1);
+//curl localhost:3000/stats?ly=1&open=true
+app.get("/stats", function(req, res) {
+    stats.plotStats(String(req.query.ly), req.query.popup);
+    res.send("SUCCESS");
+});
 
 app.listen(3000);

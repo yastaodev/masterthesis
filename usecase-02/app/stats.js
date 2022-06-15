@@ -1,7 +1,6 @@
 const converter = require("./converter")
 
-module.exports.plotStats = function (ly) {
-    let km = converter.fromLyToKm(ly);
+function plot(km) {
     //TODO Use relative path
     Polyglot.eval('R',
         `# Km/h & Km
@@ -10,6 +9,7 @@ module.exports.plotStats = function (ly) {
         }
         plot <- function(km) {
             library(ggplot2)
+            
             num <- as.double(km)
             data <- data.frame(
               Objects=c("Human","Cheetah","Train","Airplane","Rocket") ,  
@@ -21,14 +21,24 @@ module.exports.plotStats = function (ly) {
               theme(text = element_text(size = 50), plot.margin=unit(c(5,5,0,0), "cm"), panel.spacing=unit(c(0,0,0,0), "cm")) +
               coord_flip()
              
-            ggsave("/opt/work/workspaces/idea/master-thesis/usecase-02/tmp/r-data.png")
+            ggsave("tmp/stats.png")
         }
         export('plot', plot)`);
-    plotFunction = Polyglot.import('plot');
-    plotFunction(km);
+    plotRFunc = Polyglot.import('plot');
+    plotRFunc(km);
+}
 
-    var desktop = Java.type('java.awt.Desktop')
-    var FileClass = Java.type('java.io.File');
-    var file = new FileClass("/opt/work/workspaces/idea/master-thesis/usecase-02/tmp/r-data.png");
-    desktop.getDesktop().open(file);
+function openStatsFile(open) {
+    if (open === "true") {
+        var desktop = Java.type('java.awt.Desktop')
+        var FileClass = Java.type('java.io.File');
+        var file = new FileClass("tmp/stats.png");
+        desktop.getDesktop().open(file);
+    }
+}
+
+module.exports.plotStats = function (ly, popup) {
+    let km = converter.fromLyToKm(ly);
+    plot(km);
+    openStatsFile(popup);
 }

@@ -1,8 +1,19 @@
+const fs = require('fs');
 var expect = require("chai").expect;
 var request = require("request");
 
 describe("API Server", function () {
-    describe("Light Years to Kilometers", function () {
+    before(function() {
+        let folder = 'tmp/';
+        fs.readdir(folder, (err, files) => {
+            if (err) throw err;
+            for (const file of files) {
+                fs.unlinkSync(folder + file);
+            }
+        });
+    });
+
+    describe("Light Years to Kilometers", function (done) {
         var url = "http://localhost:3000/fromLyToKm?ly=14000000000";
         it("returns status 200", function (done) {
             request(url, function(error, response, body) {
@@ -32,5 +43,21 @@ describe("API Server", function () {
                 done();
             });
         });
+    })
+
+    describe("How long does one need to cover the distance?", function (done) {
+        var url = "http://localhost:3000/stats?ly=1&open=true";
+        it("returns status 200", function (done) {
+            request(url, function(error, response, body) {
+                expect(response.statusCode).to.equal(200);
+                done();
+            });
+        }).timeout(5000);;
+        it("plots the comparison graph", function (done) {
+            request(url, function(error, response, body) {
+                expect(body).to.equal("SUCCESS");
+                done();
+            });
+        }).timeout(10000);
     })
 })
