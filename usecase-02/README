@@ -58,3 +58,16 @@ Hier merkt man beim Testen, dass:
   npm --jvm test -> Error: No language for id R found. Supported languages are: [js]
   npm --polyglot test -> Error: No language for id R found. Supported languages are: [js]
   npm --polyglot --jvm test -> Error: No language for id R found. Supported languages are: [js]
+
+## Known Bugs:
+# export NODE_POLYGLOT_OPTIONS=--polyglot (https://github.com/oracle/graaljs/issues/364)
+
+#
+//1. Approach R-Test ignorieren: Nur das Bild oder die Hashes vergleichen
+//2. Approach R-Test als Snippet einbetten und evaluieren:
+    TestRunner von Mocha zeigt dass Test erfolgreich ist, obwohl das nicht der Fall ist
+    Daher den Rückgabewert, sowie den Stacktrace muss man lesen können und an Mocha weitergeben
+    capture.output in R, Array als Rückgabewert, ANSI-Colors escapen, True/false extrahieren
+//3. Approach R-Test nicht polyglot testen, sondern fastR als separater Prozess aufrufen und den Test durchführen
+# Beim 3. Approach, nicht im polyglotten Kontext, also R-Tests im separaten Prozess machen nativ mit FastR, fragt man sich ob das Sinn macht, da
+verschiedene Umebung zu unterschiedlichen Ergebnissen führen kann.

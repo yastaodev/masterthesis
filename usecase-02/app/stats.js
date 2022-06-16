@@ -1,7 +1,6 @@
 const converter = require("./converter")
 
 function plot(km) {
-    //TODO Use relative path
     Polyglot.eval('R',
         `# Km/h & Km
         calc <- function(speed, distance) {
