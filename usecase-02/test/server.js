@@ -45,7 +45,7 @@ describe("API Server", function () {
         });
     })
 
-    describe("How long does one need to cover the distance?", function (done) {
+    describe("How long does it need to cover the distance?", function (done) {
         var url = "http://localhost:3000/stats?ly=1&open=true";
         it("returns status 200", function (done) {
             request(url, function(error, response, body) {

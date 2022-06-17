@@ -25,7 +25,9 @@ unknown:0
 unknown
 ^
 [Error: parse exception] oder
-[Error: Error: object 'Objects' not found]
+[Error: Error: object 'Objects' not found] oder
+Error: the object {} was thrown, throw an Error :)
+
 
 ## Probleme mit experimentellen Features: Compiler, Machine CPU not supported,etc, manches funzt nicht mit native image distributioninsta
 ## Probleme: Ganz viele Packages müssen installiert werden, z.B. bei ggplot2, fast eine Stunde um weitere Dependencies zu installieren

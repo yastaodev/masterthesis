@@ -2,6 +2,7 @@ var expect = require("chai").expect;
 var stats = require("../app/stats");
 const crypto = require('crypto');
 const fs = require('fs');
+const util = require('util');
 
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -12,7 +13,7 @@ const fs = require('fs');
 //
 
 describe("Statistics", function () {
-    describe("How long does one need to cover the distance?", function () {
+    describe("How long does it need to cover the distance?", function () {
         it("plots a comparison graph for a given distance (No R-Tests)", function () {
             stats.plotStats(1, false);
 
@@ -32,58 +33,67 @@ describe("Statistics", function () {
                 library(ggplot2)
                 library(testthat)
                 library(crayon)
-                # First, 'correct' data frame
-                df <- data.frame(
-                    Response   = LETTERS[1:5],
-                    Proportion = c(0.1,0.2,0.1,0.2,0.4)
+                
+                # First data frame (Correct)
+                df1 <- data.frame(
+                    Objects = c("Human","Cheetah","Train","Airplane","Rocket"),
+                    Years = c(0.1,0.2,0.1,0.2,0.4)
                 )
                 
-                # Second data frame where column has 'wrong' name that does not match aes()
+                # Second data frame (Wrong)
                 df2 <- data.frame(
-                    x          = LETTERS[1:5],
-                    Proportion = c(0.1,0.2,0.1,0.2,0.4)
+                    Items = c("Human","Cheetah","Train","Airplane","Rocket"),
+                    Years = c(10,20,30,40,50)
                 )
                 
                 plot_fun <- function(df) {
-                    p1 <- ggplot(df, aes(Response, Proportion)) +
+                    pt <- ggplot(df, aes(Objects, Years)) +
                         geom_bar(stat='identity')
-                        return(p1)
+                        return(pt)
                 }
                 
                 # All tests succeed
-                #z <- capture.output(
-                z <- function() {
-                    x <- capture.output(
-                    y <- test_that("Scale is labelled 'Proportion'",{
-                        p <- plot_fun(d)
-                        expect_true(is.ggplot(p))
-                        expect_identical(p$labels$y, "Proportion")
-                    
-                        p <- plot_fun(df2)
-                        expect_true(is.ggplot(p))
-                        expect_identical(p$labels$y, "Proportion")
-                    })
+                f1 <- function() {
+                    c1 <- capture.output(
+                        t1 <- test_that("Check label 'Years'",{
+                            p <- plot_fun(df1)
+                            expect_true(is.ggplot(p))
+                            expect_identical(p$labels$y, "Years")
+                        
+                            p <- plot_fun(df2)
+                            expect_true(is.ggplot(p))
+                            expect_identical(p$labels$y, "Years")
+                        })
                     )
-                    return(c(y, strip_style(x)))
+                    return(c(t1, strip_style(c1)))
                 }
-                #)
-                
                 # Second test with data frame df2 fails
-                test_that("Printing ggplot object actually works",{
-                    p <- plot_fun(df)
-                    expect_error(print(p), NA)
+                f2 <- function() {
+                    c2 <- capture.output(
+                        t2 <- test_that("Printing plot object",{
+                            p <- plot_fun(df1)
+                            expect_error(print(p), NA)
+                        
+                            p <- plot_fun(df2)
+                            expect_error(print(p), NA)
+                        })
+                    )
+                    return(c(t2, strip_style(c2)))
+                }
                 
-                    p <- plot_fun(df2)
-                    expect_error(print(p), NA)
-                })
-                
-                        export('z', z)
+                export('f1', f1)
+                export('f2', f2)
             `);
 
-            z = Polyglot.import('z');
-            ss = z();
-            const util = require('util');
-            console.log(util.inspect(ss, false, null, true));
+            f1 = Polyglot.import('f1');
+            res1 = f1();
+            console.log(util.inspect(res1, false, null, true));
+            expect(res1[0]).to.equal("TRUE");
+
+            f2 = Polyglot.import('f2');
+            res2 = f2();
+            console.log(util.inspect(res2, false, null, true));
+            expect(res2[0]).to.equal("TRUE");
 
         }).timeout(100000);
         });

@@ -11,7 +11,7 @@ function plot(km) {
             
             num <- as.double(km)
             data <- data.frame(
-              Objects=c("Human","Cheetah","Train","Airplane","Rocket") ,  
+              Objects=c("Human","Cheetah","Train","Airplane","Rocket"),  
               Years=c(calc(9.4, num),calc(130, num),calc(300, num),calc(900, num),calc(27000, num))
             )
             
