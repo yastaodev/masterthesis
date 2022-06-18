@@ -68,6 +68,14 @@ Hier merkt man beim Testen, dass:
     TestRunner von Mocha zeigt dass Test erfolgreich ist, obwohl das nicht der Fall ist
     Daher den Rückgabewert, sowie den Stacktrace muss man lesen können und an Mocha weitergeben
     capture.output in R, Array als Rückgabewert, ANSI-Colors escapen, True/false extrahieren
+    2.a. R-File separat: Vorteil: lässt sich besser debuggen
 //3. Approach R-Test nicht polyglot testen, sondern fastR als separater Prozess aufrufen und den Test durchführen
 # Beim 3. Approach, nicht im polyglotten Kontext, also R-Tests im separaten Prozess machen nativ mit FastR, fragt man sich ob das Sinn macht, da
 verschiedene Umebung zu unterschiedlichen Ergebnissen führen kann.
+    Vorteil aber: man kann Test einfach ausführen, man muss nicht output capture und wrapper-Funktionen einbauen
+    Nachteil: Ausführung aus Node.Js / Mocha heraus gibt keine Rückmeldung?
+//4. Approach Mocks benutzen
+
+## VS Code GraalVM Extension zeigt String-Snippets in Farben, unterstützt das Debugging nicht nur im Snippet sondern auch im File außerhalb
+
+## Aktuell ist beste Unterstützung nur bei VS code

@@ -27,8 +27,8 @@ function plot(km) {
     plotRFunc(km);
 }
 
-function openStatsFile(open) {
-    if (open === "true") {
+function openStatsFile(popup) {
+    if (popup == "true") {
         var desktop = Java.type('java.awt.Desktop')
         var FileClass = Java.type('java.io.File');
         var file = new FileClass("tmp/stats.png");
