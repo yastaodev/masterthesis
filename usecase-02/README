@@ -79,3 +79,5 @@ verschiedene Umebung zu unterschiedlichen Ergebnissen führen kann.
 ## VS Code GraalVM Extension zeigt String-Snippets in Farben, unterstützt das Debugging nicht nur im Snippet sondern auch im File außerhalb
 
 ## Aktuell ist beste Unterstützung nur bei VS code
+
+//TODO wie bei usecase-03, auch hier loggen, aus welcher Sprache wird der Befehl ausgeführt
