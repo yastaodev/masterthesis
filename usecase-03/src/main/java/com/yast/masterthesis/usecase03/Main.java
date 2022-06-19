@@ -16,7 +16,7 @@ import org.graalvm.polyglot.Source;
 import org.graalvm.polyglot.Value;
 
 public class Main {
-    public static final String PYTHON = "python";
+    private static final String PYTHON = "python";
     private static final String VENV_EXECUTABLE = Paths.get("venv", "bin", "graalpython").toString();
     //private static InputStream SOURCE_FILE_INPUT = Main.class.getClassLoader().getResourceAsStream(SOURCE_FILE_NAME);
 
@@ -45,43 +45,33 @@ public class Main {
             context.eval(PYTHON, "import sys; print(sys.executable)");
 
             Source source;
-            try {
-                source = Source.newBuilder(PYTHON, getResourceUrl("step01.py")).build();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            context.eval(source);
+            eval(context, "step01.py");
 
             convertSvgToPng(Paths.get("target/bar_code.svg"), Paths.get("target/bar_code.png"));
 
-            try {
-                source = Source.newBuilder(PYTHON, getResourceUrl("step02.py")).build();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            context.eval(source);
+            eval(context, "step02.py");
 
 
-            try {
-                source = Source.newBuilder(PYTHON, getResourceUrl("step03.py")).build();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            context.eval(source);
+            eval(context, "step03.py");
             Value function = context.getPolyglotBindings().getMember("watermark_photo");
             function.execute(getTargetFileLocation("prefinal.png"), getResourceUrl("stamp.png").getPath(), getTargetFileLocation("final.png"));
 
 
-            try {
-                source = Source.newBuilder(PYTHON, getResourceUrl("step04.py")).build();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            context.eval(source);
+            eval(context, "step04.py");
 
         }
 
 
+    }
+
+    private static void eval(Context context, String pythonScript) {
+        Source source;
+        try {
+            source = Source.newBuilder(PYTHON, getResourceUrl(pythonScript)).build();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        context.eval(source);
     }
 
     private static String getTargetFileLocation(String fileName) {
@@ -107,7 +97,12 @@ public class Main {
     }
 
     private static Context buildPythonContext(String VENV_EXECUTABLE) {
-        return Context.newBuilder("python").allowNativeAccess(true).allowAllAccess(true).option("python.ForceImportSite", "true").option("python.Executable", VENV_EXECUTABLE).build();
+        return Context.newBuilder(PYTHON)
+                .allowNativeAccess(true)
+                .allowAllAccess(true)
+                .option("python.ForceImportSite", "true")
+                .option("python.Executable", VENV_EXECUTABLE)
+                .build();
     }
 
     private static URL getResourceUrl(String relativePath) {
