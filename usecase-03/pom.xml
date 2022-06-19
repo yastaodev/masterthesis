@@ -8,6 +8,7 @@
     <artifactId>usecase-03</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
+
         <dependency>
             <groupId>org.apache.xmlgraphics</groupId>
             <artifactId>batik-all</artifactId>
