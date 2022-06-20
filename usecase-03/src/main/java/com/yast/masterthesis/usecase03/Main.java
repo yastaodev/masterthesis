@@ -1,7 +1,5 @@
 package com.yast.masterthesis.usecase03;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
@@ -11,11 +9,7 @@ import org.graalvm.polyglot.Source;
 import org.graalvm.polyglot.Value;
 
 public class Main {
-    private static final String PYTHON = "python";
-    private static final String VENV_EXECUTABLE = Paths.get("venv", "bin", "graalpython").toString();
 
-    // 2. Python code should be reorganized in functions which take the path of the newly created image and return the processed image as a
-    // result, which can be forwarded later to another function
     // 3.
     //      a. All functions should be included in a single .py file with one input and one output to demonstrate that testing of the guest
     // language cannot be ignored
@@ -35,75 +29,34 @@ public class Main {
 
     // Was ist hier besser? Java als Hostsprache oder Python
     // Noch ein interessanter Fall: Java ruft Python auf, und Python ruft Java auf
-        // das heißt: Ein Script ist in python geschrieben, der das ganze Zeug erledigt. Beim Konvertieren von SVG to PNG Java Converter in py
-        // aufrufen
-        // Hier wieder die Pragmatik und gleichzeitig die Schönheit und Flexibilität von GraalVM: Der SVG Converter von Python wollte nicht
-        // auf meinem Ubuntu funktionieren, also habe ich einfach das von Java verwendet und it works like a charm. Diese Felxibilität bezahlt
+    // das heißt: Ein Script ist in python geschrieben, der das ganze Zeug erledigt. Beim Konvertieren von SVG to PNG Java Converter in py
+    // aufrufen
+    // Hier wieder die Pragmatik und gleichzeitig die Schönheit und Flexibilität von GraalVM: Der SVG Converter von Python wollte nicht
+    // auf meinem Ubuntu funktionieren, also habe ich einfach das von Java verwendet und it works like a charm. Diese Felxibilität bezahlt
     // man mit CPU/RAM, da sehr viel braucht
-        // By the way: GraalVM ist ganz nützlich wenn man schnell einen Snippet im Internet findet, z.B in Rust oder Go oder was auch immer:
-        // einfach einfügen und glücklich sein
+    // By the way: GraalVM ist ganz nützlich wenn man schnell einen Snippet im Internet findet, z.B in Rust oder Go oder was auch immer:
+    // einfach einfügen und glücklich sein, Probleme besser gelöst als in der Lieblingssprache, z.B. Crypto-Operationen wie Hashing,
+    // Bildbearbeitung etc.
     // Man ruft Funktionen auf und gibt Argumente und bekommt Results zurück, als wären sie in der Hostsprache geschrieben. Leider keine
     // Rückmeldung der IDE, Argumente sind einfach Strings, die IDE saggt nicht welcher Rückgabetyp die Funktion der Gastsprache ist, und auch
     // welche Argumente sie entgegen nimmt
 
+    //Wenn sich die Namen der Python-Funktionen ändern, habe ich im ImageProcessor ein Problem
+
     // Integrationstest in Java vergleichen mit Integrationstest in Python
     public static void main(String[] args) {
-        try (Context context = buildPythonContext(VENV_EXECUTABLE)) {
-            context.eval(PYTHON, "import site");
-            context.eval(PYTHON, "import sys; print(sys.version)");
-            context.eval(PYTHON, "import sys; print(sys.executable)");
-
-            evalSource(context, "image_utils.py");
-
-            //TODO String in Konstanten extrahieren
-
-            String outImgPath = null;
-
-            Value funcCreateEmptyImage = context.getPolyglotBindings().getMember("create_empty_image");
-            String emptyImgPath = funcCreateEmptyImage.execute().asString();
-
-            Value funcCreateQrcodeImage = context.getPolyglotBindings().getMember("create_qrcode_image");
-            String qrcodeImgPath = funcCreateQrcodeImage.execute("lorem ipsum dolor sit amet").asString();
-
-            Value funcCreateBarcodeImage = context.getPolyglotBindings().getMember("create_barcode_image");
-            String barcodeSvgImgPath = funcCreateBarcodeImage.execute("5909876183457").asString();
-
-            String barcodePngImgPath = ImageUtils.convertSvgToPng(Paths.get(barcodeSvgImgPath));
-
-            Value funcRotate = context.getPolyglotBindings().getMember("rotate");
-            funcRotate.execute(barcodePngImgPath);
-
-            Value funcMerge = context.getPolyglotBindings().getMember("merge");
-            outImgPath = funcMerge.execute(emptyImgPath, qrcodeImgPath, 50, 50).asString();
-            outImgPath = funcMerge.execute(outImgPath, barcodePngImgPath, 700, -2).asString();
-
-            Value funcAddText = context.getPolyglotBindings().getMember("add_text");
-            funcAddText.execute(outImgPath, "Automatically generated!", 470, 230);
-
-            Value funcAddWatermark = context.getPolyglotBindings().getMember("add_watermark");
-            funcAddWatermark.execute(outImgPath, getResourceUrl("stamp.png").getPath());
-
-            ImageUtils.openImage(outImgPath);
-        }
-    }
-
-    private static void evalSource(Context context, String pythonScript) {
-        Source source;
-        try {
-            source = Source.newBuilder(PYTHON, getResourceUrl(pythonScript)).build();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        context.eval(source);
-    }
-
-    private static Context buildPythonContext(String VENV_EXECUTABLE) {
-        return Context.newBuilder(PYTHON)
-                .allowNativeAccess(true)
-                .allowAllAccess(true)
-                .option("python.ForceImportSite", Boolean.toString(true))
-                .option("python.Executable", VENV_EXECUTABLE)
-                .build();
+        String outImgPath = null;
+        ImageProcessor imageProcessor = new ImageProcessor();
+        String emptyImgPath = imageProcessor.createEmptyImage();
+        String qrcodeImgPath = imageProcessor.createQrcodeImage("lorem ipsum dolor sit amet");
+        String barcodeSvgImgPath = imageProcessor.createBarcodeImage("5909876183457");
+        String barcodePngImgPath = imageProcessor.convertSvgToPng(Paths.get(barcodeSvgImgPath));
+        imageProcessor.rotateImage(barcodePngImgPath);
+        outImgPath = imageProcessor.merge(emptyImgPath, qrcodeImgPath, 50, 50);
+        outImgPath = imageProcessor.merge(outImgPath, barcodePngImgPath, 700, -2);
+        imageProcessor.addText(outImgPath, "Automatically generated!", 470, 230);
+        imageProcessor.addWatermark(outImgPath, getResourceUrl("stamp.png").getPath());
+        imageProcessor.openImage(outImgPath);
     }
 
     private static URL getResourceUrl(String relativePath) {
