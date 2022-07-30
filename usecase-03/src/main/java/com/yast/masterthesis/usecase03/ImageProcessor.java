@@ -1,9 +1,6 @@
 package com.yast.masterthesis.usecase03;
 
-import com.google.zxing.BinaryBitmap;
-import com.google.zxing.MultiFormatReader;
-import com.google.zxing.NotFoundException;
-import com.google.zxing.Result;
+import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import org.graalvm.polyglot.Context;
@@ -18,6 +15,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ImageProcessor {
     private static final String PYTHON = "python";
@@ -50,12 +50,6 @@ public class ImageProcessor {
         return barcodeSvgImgPath;
     }
 
-    public String convertSvgToPng(Path input) {
-        SvgToPngConverter svgToPngConverter = new SvgToPngConverter();
-        System.out.println("Java :: Image has been from SVG to PNG converted.");
-        return svgToPngConverter.convert(input);
-    }
-
     public void rotateImage(String imagePath) {
         Value funcRotate = context.getPolyglotBindings().getMember("rotate");
         funcRotate.execute(imagePath);
@@ -77,22 +71,28 @@ public class ImageProcessor {
         funcAddWatermark.execute(imagePath, watermarkPath);
     }
 
-    public static String readQRCode(String qrCodeFilePath) {
-        String encodedContent = null;
+    public static String convertSvgToPng(String input) {
+        SvgToPngConverter svgToPngConverter = new SvgToPngConverter();
+        System.out.println("Java :: Image has been converted from SVG to PNG.");
+        return svgToPngConverter.convert(Paths.get(input));
+    }
+
+    public static String decode(String imageFilePath) {
+        String text = null;
         try {
-            BufferedImage bufferedImage = ImageIO.read(new File(qrCodeFilePath));
+            BufferedImage bufferedImage = ImageIO.read(new File(imageFilePath));
             BufferedImageLuminanceSource bufferedImageLuminanceSource = new BufferedImageLuminanceSource(bufferedImage);
             HybridBinarizer hybridBinarizer = new HybridBinarizer(bufferedImageLuminanceSource);
             BinaryBitmap binaryBitmap = new BinaryBitmap(hybridBinarizer);
             MultiFormatReader multiFormatReader = new MultiFormatReader();
 
             Result result = multiFormatReader.decode(binaryBitmap);
-            encodedContent = result.getText();
+            text = result.getText();
         } catch (IOException | NotFoundException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Java :: QR Code has been read.");
-        return encodedContent;
+        System.out.println("Java :: Image has been decoded.");
+        return text;
     }
 
     public void openImage(String imagePath) {

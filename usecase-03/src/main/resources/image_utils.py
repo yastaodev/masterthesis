@@ -37,7 +37,7 @@ def create_qrcode_image(text, bg_color, fg_color):
 def create_barcode_image(number):
     my_code = EAN13(number)
     out = 'target/barcode'
-    my_code.save(out)
+    my_code.save(out, {"module_width":1, "module_height":10, "font_size": 18, "text_distance": 10, "quiet_zone": 20})
     print("Python :: Barcode has been created.")
     return out + '.svg'
 

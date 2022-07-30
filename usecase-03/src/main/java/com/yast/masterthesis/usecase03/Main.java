@@ -69,17 +69,21 @@ public class Main {
         // Zu viele Strings
 
     // In test_create_qrcode_image wurde Java Code aufgerufen, da nicht möglich war OpenCV/zybar zum laufen zu kriegen -> Pragmatischer Ansatz
+        // OpenCv funktioniert überigens sehr gut mit Python, nur mit Graalpython nicht
+
+    // Eine schöne Sache: siehe image_utils_test#test_create_barcode_image man merkt gar nicht, dass man Java Code verwendet. Es sieht alles
+    // aus wie Python
     public static void main(String[] args) {
         String outImgPath = null;
         ImageProcessor imageProcessor = new ImageProcessor();
         String emptyImgPath = imageProcessor.createEmptyImage();
         String qrcodeImgPath = imageProcessor.createQrcodeImage("lorem ipsum dolor sit amet", "#A5FF00", "#5A5A5A");
         String barcodeSvgImgPath = imageProcessor.createBarcodeImage("5909876183457");
-        String barcodePngImgPath = imageProcessor.convertSvgToPng(Paths.get(barcodeSvgImgPath));
+        String barcodePngImgPath = imageProcessor.convertSvgToPng(barcodeSvgImgPath);
         imageProcessor.rotateImage(barcodePngImgPath);
         outImgPath = imageProcessor.merge(emptyImgPath, qrcodeImgPath, 50, 50);
-        outImgPath = imageProcessor.merge(outImgPath, barcodePngImgPath, 700, -2);
-        imageProcessor.addText(outImgPath, "Automatically generated!", 470, 230);
+        outImgPath = imageProcessor.merge(outImgPath, barcodePngImgPath, 700, -60);
+        imageProcessor.addText(outImgPath, "Automatically generated!", 450, 230);
         imageProcessor.addWatermark(outImgPath, getResourceUrl("stamp.png").getPath());
         imageProcessor.openImage(outImgPath);
     }

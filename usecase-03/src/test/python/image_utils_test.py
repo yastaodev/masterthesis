@@ -29,12 +29,20 @@ class ImageUtilsTestCase(unittest.TestCase):
         self.assertEqual(checksum1, checksum2)
 
     def test_create_qrcode_image(self):
-        self.assertEqual(True, True)
         out_img_path = image_utils.create_qrcode_image("lorem ipsum dolor sit amet", "#FFFFFF", "#000000")
         image_processor_class = java.type("com.yast.masterthesis.usecase03.ImageProcessor")
-        out_qrcode_val = image_processor_class.readQRCode(out_img_path)
-        test_qrcode_val = image_processor_class.readQRCode(testResourcesPath + "test_create_qrcode_image.png")
+        out_qrcode_val = image_processor_class.decode(out_img_path)
+        test_qrcode_val = image_processor_class.decode(testResourcesPath + "test_create_qrcode_image.png")
         self.assertEqual(out_qrcode_val, test_qrcode_val)
+
+
+    def test_create_barcode_image(self):
+        out_img_path = image_utils.create_barcode_image("5909876183457")
+        image_processor_class = java.type("com.yast.masterthesis.usecase03.ImageProcessor")
+        out_img_path = image_processor_class.convertSvgToPng(os.path.abspath(out_img_path))
+        out_barcode_val = image_processor_class.decode(out_img_path)
+        test_barcode_val = image_processor_class.decode(testResourcesPath + "test_create_barcode_image.png")
+        self.assertEqual(out_barcode_val, test_barcode_val)
 
 
 if __name__ == '__main__':
