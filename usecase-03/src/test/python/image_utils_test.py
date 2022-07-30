@@ -45,5 +45,15 @@ class ImageUtilsTestCase(unittest.TestCase):
         self.assertEqual(out_barcode_val, test_barcode_val)
 
 
+    def test_rotate_image(self):
+        img_path = testResourcesPath + "test_rotate_image.png"
+        img = Image.open(img_path)
+        w1, h1 = img.size
+        image_utils.rotate(img_path)
+        img = Image.open(img_path)
+        w2, h2 = img.size
+        self.assertEqual(w1, h2)
+        self.assertEqual(w2, h1)
+
 if __name__ == '__main__':
     unittest.main()
