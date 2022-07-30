@@ -1,12 +1,25 @@
 package com.yast.masterthesis.usecase03;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
+import com.google.zxing.*;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import com.google.zxing.qrcode.decoder.Version;
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.Source;
 import org.graalvm.polyglot.Value;
+
+import javax.imageio.ImageIO;
 
 public class Main {
 
@@ -44,11 +57,23 @@ public class Main {
     //Wenn sich die Namen der Python-Funktionen ändern, habe ich im ImageProcessor ein Problem
 
     // Integrationstest in Java vergleichen mit Integrationstest in Python
+
+    // Nach 1000 Versuchen konnte ich in Python den QR-Code nicht auslesen (OpenCV, zybar, etc.)
+        // Dann versucht mit Java zxing Library
+        // Es hat geklappt, aber ich konnte den Code nicht in Python Test verwenden, da ich JAR exportieren und Classpath setzen müsste
+        // Also sind die Tests in Python nicht vollständig, also in Java machen
+        // Das ist auch ein Anwendungsfall, wo man merkt, dass der pragmatische Ansatz der beste ist
+
+    // Ein weiteres Ding: Wenn ich eine Java-Funktion in Python aufrufe, zeigt mir die IDE die Funktion als wäre sie unused
+        // Beispiel: ImageProcessor#readQrCode
+        // Zu viele Strings
+
+    // In test_create_qrcode_image wurde Java Code aufgerufen, da nicht möglich war OpenCV/zybar zum laufen zu kriegen -> Pragmatischer Ansatz
     public static void main(String[] args) {
         String outImgPath = null;
         ImageProcessor imageProcessor = new ImageProcessor();
         String emptyImgPath = imageProcessor.createEmptyImage();
-        String qrcodeImgPath = imageProcessor.createQrcodeImage("lorem ipsum dolor sit amet");
+        String qrcodeImgPath = imageProcessor.createQrcodeImage("lorem ipsum dolor sit amet", "#A5FF00", "#5A5A5A");
         String barcodeSvgImgPath = imageProcessor.createBarcodeImage("5909876183457");
         String barcodePngImgPath = imageProcessor.convertSvgToPng(Paths.get(barcodeSvgImgPath));
         imageProcessor.rotateImage(barcodePngImgPath);

@@ -17,7 +17,7 @@ def create_empty_image():
 
 
 @polyglot.export_value
-def create_qrcode_image(text):
+def create_qrcode_image(text, bg_color, fg_color):
     qr = qrcode.QRCode(
         version=12,
         error_correction=qrcode.constants.ERROR_CORRECT_H,
@@ -26,7 +26,7 @@ def create_qrcode_image(text):
     )
     qr.add_data(text)
     qr.make()
-    img = qr.make_image(fill_color="#A5FF00", back_color="#5A5A5A")
+    img = qr.make_image(fill_color=fg_color, back_color=bg_color) #fill_color="#A5FF00", back_color="#5A5A5A")
     out = 'target/qrcode.png'
     img.save(out)
     print("Python :: QR Code has been created.")

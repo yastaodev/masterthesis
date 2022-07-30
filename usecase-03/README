@@ -37,3 +37,22 @@ The two option calls go hand in hand and need a bit more Python background. The 
 Methoden haben keinen Zustand, daher muss der Context jedesmal neu gebildet werden, und das ist sehr teuer. Das will man natürlich nicht. Deshalb
  war ich GEZWUNGEN, einen Processor daraus zu machen, der den Context als Zustand hält. Vlt. ist das ein Grund warum lieber Python für die Tests
  nutzen.. weiß ich nicht.
+/opt/work/workspaces/idea/master-thesis/usecase-03/src/test/resources
+ # In der Regel gibt es für jede Sprache eine geeignete IDE, z.B. PyCharm für Python, RStudio für R usw. Entwickeln von Python-Code in Eclipse
+ oder in Intellij IDEA bringt nicht dieselbe User Experience, trotz Plugins usw. Genauso macht das Java Coding in VS Code nicht so viel Spaß. Es
+ gibt einfach für jede Sprache eine speziell eingeschnittene IDE.
+
+ # Meine Lieblings-IDE bietet nicht den besten Support für Python Tests, deshalb musste ich zu VS Code switchen, um die Pythons Test auszuführen.
+
+ # Tests im Terminal ausführen: python3 -m unittest image_utils_test.py
+
+ # Man sieht bspw. anhand von test_create_empty_image, dass der Test mit der entsprechenden Sprache mehr Möglichkeiten anbietet: Hier z.B. konnte
+  ich auf die NumPy Bibliothek zugreifen und diverse Vergleiche machen.
+    Mit Java hat man nur die Möglichkeit die Endergebnisse bzw. Erzeugnisse zu vergleichen, sei es mit Hash oder was anderes.
+        Es sei denn man nutzt die Polyglot-API, aber das ist wiederum zu viel des Guten.
+
+# Das Aufrufen von Py Tests mit python erspart mir die ganzen Inkompatibilitäten und Einschränkungen von GraalVM Polyglot API, bzw. graalpython
+specific patches
+
+# Problematisch: Für jeden Import musste ich tausende von Bibliotheken installieren, teils manuell, C-Libraries für Ubuntu etc.
+    Ich habe den Überblick verloren, was ich alles installieren musste. Deshalb ist die pom.xml nicht relevant

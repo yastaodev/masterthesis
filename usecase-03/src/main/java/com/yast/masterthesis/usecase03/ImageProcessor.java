@@ -1,10 +1,18 @@
 package com.yast.masterthesis.usecase03;
 
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.Result;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.Source;
 import org.graalvm.polyglot.Value;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -30,9 +38,9 @@ public class ImageProcessor {
         return emptyImgPath;
     }
 
-    public String createQrcodeImage(String input) {
+    public String createQrcodeImage(String input, String backgroundColor, String foregroundColor) {
         Value funcCreateQrcodeImage = context.getPolyglotBindings().getMember("create_qrcode_image");
-        String qrcodeImgPath = funcCreateQrcodeImage.execute(input).asString();
+        String qrcodeImgPath = funcCreateQrcodeImage.execute(input, backgroundColor, foregroundColor).asString();
         return qrcodeImgPath;
     }
 
@@ -67,6 +75,24 @@ public class ImageProcessor {
     public void addWatermark(String imagePath, String watermarkPath) {
         Value funcAddWatermark = context.getPolyglotBindings().getMember("add_watermark");
         funcAddWatermark.execute(imagePath, watermarkPath);
+    }
+
+    public static String readQRCode(String qrCodeFilePath) {
+        String encodedContent = null;
+        try {
+            BufferedImage bufferedImage = ImageIO.read(new File(qrCodeFilePath));
+            BufferedImageLuminanceSource bufferedImageLuminanceSource = new BufferedImageLuminanceSource(bufferedImage);
+            HybridBinarizer hybridBinarizer = new HybridBinarizer(bufferedImageLuminanceSource);
+            BinaryBitmap binaryBitmap = new BinaryBitmap(hybridBinarizer);
+            MultiFormatReader multiFormatReader = new MultiFormatReader();
+
+            Result result = multiFormatReader.decode(binaryBitmap);
+            encodedContent = result.getText();
+        } catch (IOException | NotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Java :: QR Code has been read.");
+        return encodedContent;
     }
 
     public void openImage(String imagePath) {
