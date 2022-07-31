@@ -5,7 +5,7 @@ import numpy as np
 import java
 
 os.chdir("../../..")
-mainResourcesPath = 'src/main/resources'
+mainResourcesPath = 'src/main/resources/'
 testResourcesPath = 'src/test/resources/'
 sys.path.insert(0, mainResourcesPath)
 #sys.path.append('/home/yastao/.local/lib/python3.6/site-packages/')
@@ -57,7 +57,7 @@ class ImageUtilsTestCase(unittest.TestCase):
 
 
     def test_merge_image(self):
-        bg_img_path = testResourcesPath + "test_create_empty_image.png"
+        bg_img_path = image_utils.create_empty_image
         fg_img_path = testResourcesPath + "test_create_barcode_image.png"
         merged_img_path = image_utils.merge(bg_img_path, fg_img_path, 0, 0)
         test_img_path = testResourcesPath + "test_merge_image.png"
@@ -66,6 +66,33 @@ class ImageUtilsTestCase(unittest.TestCase):
         diff = ImageChops.difference(merged_img, test_img)
         self.assertEqual(diff.getbbox(), None)
         checksum1 = get_checksum(merged_img_path)
+        checksum2 = get_checksum(test_img_path)
+        self.assertEqual(checksum1, checksum2)
+
+
+    def test_add_text(self):
+        bg_img_path = image_utils.create_empty_image()
+        image_utils.add_text(bg_img_path, "lorem ipsum dolor sit amet", 200, 200)
+        bg_img = Image.open(bg_img_path)
+        test_img_path = testResourcesPath + "test_add_text.png"
+        test_img = Image.open(test_img_path)
+        diff = ImageChops.difference(bg_img, test_img)
+        self.assertEqual(diff.getbbox(), None)
+        checksum1 = get_checksum(bg_img_path)
+        checksum2 = get_checksum(test_img_path)
+        self.assertEqual(checksum1, checksum2)
+
+
+    def test_add_watermark(self):
+        out_img_path = image_utils.create_empty_image()
+        watermark_img_path = mainResourcesPath + "stamp.png"
+        image_utils.add_watermark(out_img_path, watermark_img_path)
+        out_img = Image.open(out_img_path)
+        test_img_path = testResourcesPath + "test_add_watermark.png"
+        test_img = Image.open(test_img_path)
+        diff = ImageChops.difference(out_img, test_img)
+        self.assertEqual(diff.getbbox(), None)
+        checksum1 = get_checksum(out_img_path)
         checksum2 = get_checksum(test_img_path)
         self.assertEqual(checksum1, checksum2)
 

@@ -73,6 +73,12 @@ public class Main {
 
     // Eine schöne Sache: siehe image_utils_test#test_create_barcode_image man merkt gar nicht, dass man Java Code verwendet. Es sieht alles
     // aus wie Python
+
+    // Ein weiteres Aspekt: das im Kurs gepriesene Konzept der Redundanz. In diesem Usecase wurden manche Funktionenn doppelt getestet: in
+    // Java und in Python
+
+    // Ein weiteres Problem: Bibliotheken verhalten sich anders in unterschiedlichen Betriebssystemen
+        // z.B. ist OpenCV in Windows nicht wie in Ubuntu, hier erfordert mehr packages zu installieren
     public static void main(String[] args) {
         String outImgPath = null;
         ImageProcessor imageProcessor = new ImageProcessor();
