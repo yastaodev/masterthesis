@@ -90,11 +90,8 @@ public class Main {
         outImgPath = imageProcessor.merge(emptyImgPath, qrcodeImgPath, 50, 50);
         outImgPath = imageProcessor.merge(outImgPath, barcodePngImgPath, 700, -60);
         imageProcessor.addText(outImgPath, "Automatically generated!", 450, 230);
-        imageProcessor.addWatermark(outImgPath, getResourceUrl("stamp.png").getPath());
+        imageProcessor.addWatermark(outImgPath, "stamp.png");
         imageProcessor.openImage(outImgPath);
     }
 
-    private static URL getResourceUrl(String relativePath) {
-        return Main.class.getClassLoader().getResource(relativePath);
-    }
 }

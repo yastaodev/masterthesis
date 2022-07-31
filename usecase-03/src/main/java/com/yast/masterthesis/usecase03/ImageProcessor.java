@@ -13,11 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ImageProcessor {
     private static final String PYTHON = "python";
@@ -66,8 +62,9 @@ public class ImageProcessor {
         funcAddText.execute(imagePath, text, x, y);
     }
 
-    public void addWatermark(String imagePath, String watermarkPath) {
+    public void addWatermark(String imagePath, String resourceName) {
         Value funcAddWatermark = context.getPolyglotBindings().getMember("add_watermark");
+        String watermarkPath = getResourceUrl(resourceName).getPath();
         funcAddWatermark.execute(imagePath, watermarkPath);
     }
 

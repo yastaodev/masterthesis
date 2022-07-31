@@ -7,7 +7,8 @@ import java
 os.chdir("../../..")
 mainResourcesPath = 'src/main/resources/'
 testResourcesPath = 'src/test/resources/'
-sys.path.insert(0, mainResourcesPath)
+pyScriptsPath = 'src/main/python/'
+sys.path.insert(0, pyScriptsPath)
 #sys.path.append('/home/yastao/.local/lib/python3.6/site-packages/')
 #sys.path.append('/usr/lib/python3/dist-packages')
 
