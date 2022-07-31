@@ -57,7 +57,7 @@ class ImageUtilsTestCase(unittest.TestCase):
 
 
     def test_merge_image(self):
-        bg_img_path = image_utils.create_empty_image
+        bg_img_path = image_utils.create_empty_image()
         fg_img_path = testResourcesPath + "test_create_barcode_image.png"
         merged_img_path = image_utils.merge(bg_img_path, fg_img_path, 0, 0)
         test_img_path = testResourcesPath + "test_merge_image.png"
