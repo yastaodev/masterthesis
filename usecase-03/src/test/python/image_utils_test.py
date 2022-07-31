@@ -46,14 +46,29 @@ class ImageUtilsTestCase(unittest.TestCase):
 
 
     def test_rotate_image(self):
-        img_path = testResourcesPath + "test_rotate_image.png"
-        img = Image.open(img_path)
+        test_img_path = testResourcesPath + "test_rotate_image.png"
+        img = Image.open(test_img_path)
         w1, h1 = img.size
-        image_utils.rotate(img_path)
-        img = Image.open(img_path)
+        image_utils.rotate(test_img_path)
+        img = Image.open(test_img_path)
         w2, h2 = img.size
         self.assertEqual(w1, h2)
         self.assertEqual(w2, h1)
+
+
+    def test_merge_image(self):
+        bg_img_path = testResourcesPath + "test_create_empty_image.png"
+        fg_img_path = testResourcesPath + "test_create_barcode_image.png"
+        merged_img_path = image_utils.merge(bg_img_path, fg_img_path, 0, 0)
+        test_img_path = testResourcesPath + "test_merge_image.png"
+        merged_img = Image.open(merged_img_path)
+        test_img = Image.open(test_img_path)
+        diff = ImageChops.difference(merged_img, test_img)
+        self.assertEqual(diff.getbbox(), None)
+        checksum1 = get_checksum(merged_img_path)
+        checksum2 = get_checksum(test_img_path)
+        self.assertEqual(checksum1, checksum2)
+
 
 if __name__ == '__main__':
     unittest.main()
