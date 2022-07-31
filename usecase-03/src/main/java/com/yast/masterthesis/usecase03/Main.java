@@ -79,6 +79,20 @@ public class Main {
 
     // Ein weiteres Problem: Bibliotheken verhalten sich anders in unterschiedlichen Betriebssystemen
         // z.B. ist OpenCV in Windows nicht wie in Ubuntu, hier erfordert mehr packages zu installieren
+
+    //Interessant: Die Java JUnit Tests delegieren die Testfunktionen auf Python-Tests
+        // D.h. wenn ich z.B. wegen Richtlinien oder Lizenzen oder auch wegen softwaretechnischen Entscheidungen die Anforderung habe, Unit-Tests
+        // unbedingt in Java zu schreiben und die Tests sind aber in Python bereits geschrieben, ich kann mit der Delegation die Arbeit
+        // erledigen. Der Vorteil lässt sich sehen bei SW, die in COBOL oder FORTRAN (z.B. Erdöl Messungen usw.) bereits vorliegen
+        // Nur die in Java geschriebenen Funktionen (decode, convertSvgToPng, etc.) werden in Java getestet
+        // Wobei bei decode diese Redundanz vorhanden ist, da bereits in Python getestet, mit dem Unterschied, dass man in Java auf die
+        // Interna der Funktion zugreifen kann
+
+    // Problem: Ich muss erwähnen, dass ich massive Probleme mit der Working Directory hatte. Wenn man das Script (z.B. image_utils_test) in
+    // Python ausführt hat man eine andere WD als wenn man das Script aus Java aufruft. Selbst wenn man versucht, den Ordner des aufgerufenen
+    // Scripts programmatisch IN PYTHON zu ermitteln, so kriegt man den tatsächlichen Ordner nicht, sondern irgendeinen, wo der callende
+    // Java-Code ausgeführt wird.
+
     public static void main(String[] args) {
         String outImgPath = null;
         ImageProcessor imageProcessor = new ImageProcessor();

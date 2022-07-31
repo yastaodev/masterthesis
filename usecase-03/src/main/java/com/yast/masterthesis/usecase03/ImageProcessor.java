@@ -82,7 +82,6 @@ public class ImageProcessor {
             HybridBinarizer hybridBinarizer = new HybridBinarizer(bufferedImageLuminanceSource);
             BinaryBitmap binaryBitmap = new BinaryBitmap(hybridBinarizer);
             MultiFormatReader multiFormatReader = new MultiFormatReader();
-
             Result result = multiFormatReader.decode(binaryBitmap);
             text = result.getText();
         } catch (IOException | NotFoundException e) {

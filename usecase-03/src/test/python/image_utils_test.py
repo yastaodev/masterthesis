@@ -3,20 +3,31 @@ import os
 import unittest
 import numpy as np
 import java
+import polyglot
+from pathlib import Path
+from simple_file_checksum import get_checksum
+from PIL import Image, ImageChops
 
-os.chdir("../../..")
+os.chdir(Path().absolute())
+if not os.getcwd().endswith('usecase-03'):
+    os.chdir("../../..")
 mainResourcesPath = 'src/main/resources/'
 testResourcesPath = 'src/test/resources/'
 pyScriptsPath = 'src/main/python/'
-sys.path.insert(0, pyScriptsPath)
+sys.path.insert(0, os.path.abspath(pyScriptsPath))
 #sys.path.append('/home/yastao/.local/lib/python3.6/site-packages/')
 #sys.path.append('/usr/lib/python3/dist-packages')
 
 import image_utils
-from simple_file_checksum import get_checksum
-from PIL import Image, ImageChops
 
 class ImageUtilsTestCase(unittest.TestCase):
+    @staticmethod
+    @polyglot.export_value
+    def constructor():
+        return ImageUtilsTestCase()
+
+
+    @polyglot.export_value
     def test_create_empty_image(self):
         img_array = np.zeros([475, 800, 3], dtype=np.uint8)
         img_array.fill(255)  # or img[:] = 255
@@ -97,6 +108,5 @@ class ImageUtilsTestCase(unittest.TestCase):
         checksum2 = get_checksum(test_img_path)
         self.assertEqual(checksum1, checksum2)
 
-
-if __name__ == '__main__':
-    unittest.main()
+#if __name__ == '__main__':
+    #unittest.main()
