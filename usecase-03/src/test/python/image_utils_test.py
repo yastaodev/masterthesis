@@ -15,10 +15,11 @@ mainResourcesPath = 'src/main/resources/'
 testResourcesPath = 'src/test/resources/'
 pyScriptsPath = 'src/main/python/'
 sys.path.insert(0, os.path.abspath(pyScriptsPath))
-#sys.path.append('/home/yastao/.local/lib/python3.6/site-packages/')
-#sys.path.append('/usr/lib/python3/dist-packages')
+# sys.path.append('/home/yastao/.local/lib/python3.6/site-packages/')
+# sys.path.append('/usr/lib/python3/dist-packages')
 
 import image_utils
+
 
 class ImageUtilsTestCase(unittest.TestCase):
     @staticmethod
@@ -26,8 +27,6 @@ class ImageUtilsTestCase(unittest.TestCase):
     def constructor():
         return ImageUtilsTestCase()
 
-
-    @polyglot.export_value
     def test_create_empty_image(self):
         img_array = np.zeros([475, 800, 3], dtype=np.uint8)
         img_array.fill(255)  # or img[:] = 255
@@ -47,7 +46,6 @@ class ImageUtilsTestCase(unittest.TestCase):
         test_qrcode_val = image_processor_class.decode(testResourcesPath + "test_create_qrcode_image.png")
         self.assertEqual(out_qrcode_val, test_qrcode_val)
 
-
     def test_create_barcode_image(self):
         out_img_path = image_utils.create_barcode_image("5909876183457")
         image_processor_class = java.type("com.yast.masterthesis.usecase03.ImageProcessor")
@@ -55,7 +53,6 @@ class ImageUtilsTestCase(unittest.TestCase):
         out_barcode_val = image_processor_class.decode(out_img_path)
         test_barcode_val = image_processor_class.decode(testResourcesPath + "test_create_barcode_image.png")
         self.assertEqual(out_barcode_val, test_barcode_val)
-
 
     def test_rotate_image(self):
         test_img_path = testResourcesPath + "test_rotate_image.png"
@@ -66,7 +63,6 @@ class ImageUtilsTestCase(unittest.TestCase):
         w2, h2 = img.size
         self.assertEqual(w1, h2)
         self.assertEqual(w2, h1)
-
 
     def test_merge_image(self):
         bg_img_path = image_utils.create_empty_image()
@@ -81,7 +77,6 @@ class ImageUtilsTestCase(unittest.TestCase):
         checksum2 = get_checksum(test_img_path)
         self.assertEqual(checksum1, checksum2)
 
-
     def test_add_text(self):
         bg_img_path = image_utils.create_empty_image()
         image_utils.add_text(bg_img_path, "lorem ipsum dolor sit amet", 200, 200)
@@ -93,7 +88,6 @@ class ImageUtilsTestCase(unittest.TestCase):
         checksum1 = get_checksum(bg_img_path)
         checksum2 = get_checksum(test_img_path)
         self.assertEqual(checksum1, checksum2)
-
 
     def test_add_watermark(self):
         out_img_path = image_utils.create_empty_image()
@@ -108,5 +102,5 @@ class ImageUtilsTestCase(unittest.TestCase):
         checksum2 = get_checksum(test_img_path)
         self.assertEqual(checksum1, checksum2)
 
-#if __name__ == '__main__':
-    #unittest.main()
+# if __name__ == '__main__':
+# unittest.main()

@@ -5,7 +5,6 @@ import org.graalvm.polyglot.Source;
 import org.graalvm.polyglot.Value;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,9 +28,42 @@ public class ImageProcessorTest {
 
     @Test
     public void testCreateEmptyImage() {
+        executePythonTest("test_create_empty_image");
+    }
+
+    @Test
+    public void testCreateQrCodeImage() {
+        executePythonTest("test_create_qrcode_image");
+    }
+
+    @Test
+    public void testCreateBarcodeImage() {
+        executePythonTest("test_create_barcode_image");
+    }
+
+    @Test
+    public void testRotateImage() {
+        executePythonTest("test_rotate_image");
+    }
+
+    @Test
+    public void testMergeImage() {
+        executePythonTest("test_merge_image");
+    }
+
+    @Test
+    public void testAddText() {
+        executePythonTest("test_add_text");
+    }
+
+    @Test
+    public void testWatermark() {
+        executePythonTest("test_add_watermark");
+    }
+
+    private void executePythonTest(String testName) {
         Value testCase = context.getPolyglotBindings().getMember("constructor").execute();
-        Value val = testCase.getMember("test_create_empty_image").execute();
-        System.out.println("OKAY");
+        testCase.getMember(testName).execute();
     }
 
     private static void evalSource(Context context, String pythonScript) {
@@ -50,7 +82,7 @@ public class ImageProcessorTest {
                 .allowAllAccess(true)
                 .option("python.ForceImportSite", Boolean.toString(true))
                 .option("python.Executable", VENV_EXECUTABLE)
-                .arguments(PYTHON, new String[] {"-m", "unittest"})
+                .arguments(PYTHON, new String[]{"-m", "unittest"})
                 .build();
     }
 
