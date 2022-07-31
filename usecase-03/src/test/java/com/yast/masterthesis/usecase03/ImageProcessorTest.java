@@ -27,37 +27,37 @@ public class ImageProcessorTest {
     }
 
     @Test
-    public void testCreateEmptyImage() {
+    public void shouldCreateEmptyImage() {
         executePythonTest("test_create_empty_image");
     }
 
     @Test
-    public void testCreateQrCodeImage() {
+    public void shouldCreateQrCodeImage() {
         executePythonTest("test_create_qrcode_image");
     }
 
     @Test
-    public void testCreateBarcodeImage() {
+    public void shouldCreateBarcodeImage() {
         executePythonTest("test_create_barcode_image");
     }
 
     @Test
-    public void testRotateImage() {
+    public void shouldRotateImage() {
         executePythonTest("test_rotate_image");
     }
 
     @Test
-    public void testMergeImage() {
+    public void shouldMergeImage() {
         executePythonTest("test_merge_image");
     }
 
     @Test
-    public void testAddText() {
+    public void shouldAddText() {
         executePythonTest("test_add_text");
     }
 
     @Test
-    public void testWatermark() {
+    public void shouldAddWatermark() {
         executePythonTest("test_add_watermark");
     }
 
