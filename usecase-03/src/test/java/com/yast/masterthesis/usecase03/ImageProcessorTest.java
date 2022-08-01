@@ -87,7 +87,7 @@ public class ImageProcessorTest {
     }
 
     private static URL getResourceUrl(String relativePath) {
-        return Main.class.getClassLoader().getResource(relativePath);
+        return Runner.class.getClassLoader().getResource(relativePath);
     }
 
 }

@@ -122,7 +122,7 @@
                             <arguments>
                                 <argument>-classpath</argument>
                                 <classpath/>
-                                <argument>com.yast.masterthesis.usecase03.Main</argument>
+                                <argument>com.yast.masterthesis.usecase03.Runner</argument>
                             </arguments>
                         </configuration>
                     </plugin>
