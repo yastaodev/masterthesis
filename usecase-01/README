@@ -47,4 +47,9 @@ Because the testing code will not be run in production, the runtime performance 
 compilation.
 Probleme: Debuggen in Guest language
 
+# Dieses Beispiel ist zum Einstieg, daher einfach und minimal gehalten + Modul hat keine weiteren Abhängigkeiten
+
+#   Vorteil: Library ist klein, useful, minimaler Aufwand. Diesen Vorteil weiß ein Java-Entwickler nicht zu schätzen, wohl aber ein PL-SQL oder
+COBOL oder wer auch immer + Viele Funktionen, die im Web nützlich sind (z.B. isStrongPassword)
+    Nachteil: Module muss zuerst installiert werden, neuer Package Manager, Sicherheitsaspekte, etc.
 
