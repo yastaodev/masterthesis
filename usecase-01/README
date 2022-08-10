@@ -50,6 +50,9 @@ Probleme: Debuggen in Guest language
 # Dieses Beispiel ist zum Einstieg, daher einfach und minimal gehalten + Modul hat keine weiteren Abhängigkeiten
 
 #   Vorteil: Library ist klein, useful, minimaler Aufwand. Diesen Vorteil weiß ein Java-Entwickler nicht zu schätzen, wohl aber ein PL-SQL oder
-COBOL oder wer auch immer + Viele Funktionen, die im Web nützlich sind (z.B. isStrongPassword)
+COBOL oder wer auch immer + Viele Funktionen, die im Web nützlich sind (z.B. isStrongPassword). Man stellt sich vor eine Oracle DB und ein
+Batch-Skript vor, das alle Emails, IBANs, etc. validiert. Enormer Gewinn
     Nachteil: Module muss zuerst installiert werden, neuer Package Manager, Sicherheitsaspekte, etc.
+
+# Keine Notwendgigkeit, Tests in JS zu schreiben.
 
