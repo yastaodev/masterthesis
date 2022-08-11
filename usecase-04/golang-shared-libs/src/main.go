@@ -1,9 +1,9 @@
 package main
 
-// #cgo LDFLAGS: -ldistance
+// #cgo LDFLAGS: -lpassword
 // #include <stdlib.h>
 // #include <stdio.h>
-// #include "libdistance.h"
+// #include "libpassword.h"
 // int myfunc() {
 //   graal_isolate_t *isolate = NULL;
 //   graal_isolatethread_t *thread = NULL;
@@ -11,8 +11,11 @@ package main
 //     fprintf(stderr, "graal_create_isolate error\n");
 //     return 1;
 //   }
-//   double a_lat   = 59;
-//   printf("%.2f km\n", distance(thread, a_lat));
+//   printf("%.2f km\n", 12.12);
+//   char *result = NULL;
+//   result = generatePassword(thread);
+//   printf("%.2f km\n", 15.15);
+//   printf("result: %s\n", result);
 //   if (graal_detach_thread(thread) != 0) {
 //     fprintf(stderr, "graal_detach_thread error\n");
 //     return 1;
@@ -20,7 +23,6 @@ package main
 //   return 0;
 // }
 import "C"
-
 func main() {
 
     C.myfunc()
