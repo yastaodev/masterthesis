@@ -1,2 +1,17 @@
 Java + Kotlin + Scala + Groovy
 With & Without Polyglot API
+
+Nur der Vollständigkeits halber, da es immerhin um polyglotte Anwendungen geht
+Die Integration der JVM Sprachen läuft nahtlos, es gibt keinen Grund, die Polyglot API zu nutzen
+Das Testen dieser Art von Applikationen gleicht das Testen einer Anwendung mit nur einer Sprache.
+Optimalerweise nutzt man Groovy zum Test schreiben, war populär vor einiger Zeit.. [Hier weiter erklären warum Groovy diese Rolle spielt]
+Diese Eleganz strebt man mit der GraalVM an, so dass man verschiedene Paradigmen (statisch vs dynamisch, funktional vs nicht-funktional etc.) in
+der gleichen Code Basis nutzen kann.
+ Aktuell läuft die Interoperabilität von nicht-JVM-Sprachen in der GraalVM noch nicht so elegant, das wird sich aber in der Zukunft mit der
+ Weiterentwicklung und Popularität und Adoption in der SW-Welt immer besser. Hat viel Potential
+
+Um Klassen in Java zu nutzen:
+ Kotlin: @file: JvmName("Addition")
+ Groovy: nichts
+ Skala: nichts
+ Clojure: Zuviel Zeug, Skript muss manuell ins Target kopiert werden
