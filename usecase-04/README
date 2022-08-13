@@ -59,3 +59,6 @@ SEHR INTERESSANT und muss unbedingt erwähnt werden:
 
 Test cannot be executed because of an issue
 https://github.com/oracle/graal/issues/4534
+
+mvn -e -DskipTests -Pnative test
+mvn -e -X -Pnative test
