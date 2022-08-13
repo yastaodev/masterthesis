@@ -47,3 +47,5 @@ werden
 
 Isolates erklären: Every function you would like to expose in a Native Image shared library using @CEntryPoint must have an IsolateThread as its
 first parameter and every call to that method through the shared library must supply a Graal Isolate pointer as its first argument.
+
+https://betterprogramming.pub/a-short-guide-to-hashing-in-go-e8bb0173e97e

@@ -4,10 +4,10 @@ get_abs_filename() {
   echo "$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
 }
 cd ../../..
-mvn clean compile
+#mvn clean compile
 mkdir target/lib
 cd target/lib
-native-image --shared -H:Name=libpwd -cp ../classes
+#native-image --shared -H:Name=libpwd -cp ../classes
 libPath=$(get_abs_filename)
 export LIBRARY_PATH=$libPath
 export LD_LIBRARY_PATH=$libPath
