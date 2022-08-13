@@ -1,9 +1,0 @@
-[SHARED_LIB]
-libdistance.so
-
-[HEADER]
-graal_isolate.h
-libdistance.h
-graal_isolate_dynamic.h
-libdistance_dynamic.h
-

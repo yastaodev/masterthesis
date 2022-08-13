@@ -47,10 +47,3 @@ werden
 
 Isolates erklären: Every function you would like to expose in a Native Image shared library using @CEntryPoint must have an IsolateThread as its
 first parameter and every call to that method through the shared library must supply a Graal Isolate pointer as its first argument.
-
-native-image --shared -H:Name=libdistance -cp target/classes
-export LD_LIBRARY_PATH=<WORKING_DIRECTORY>
-export GOPATH=<WORKING DIRECTORY>
-export GOBIN=$GOPATH/bin
-(in src folder) go install
-./out
