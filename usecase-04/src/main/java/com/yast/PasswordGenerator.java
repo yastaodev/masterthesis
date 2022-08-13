@@ -1,6 +1,5 @@
 package com.yast;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.graalvm.nativeimage.IsolateThread;
 import org.graalvm.nativeimage.c.function.CEntryPoint;
 import org.graalvm.nativeimage.c.type.CCharPointer;
@@ -15,8 +14,12 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class PasswordGenerator {
+
+    public static void main(String[] args) {
+    }
+
     @CEntryPoint(name = "generatePassword")
-    private static CCharPointer generatePassword(IsolateThread thread) {
+    public static CCharPointer generatePassword(IsolateThread thread) {
         try (CTypeConversion.CCharPointerHolder pointerHolder = CTypeConversion.toCString(generateSecureRandomPassword())) {
             return pointerHolder.get();
         }
