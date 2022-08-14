@@ -25,3 +25,17 @@ anders, da C/C++ kompilierte Sprachen sind.
 It provides an implementation of the lli tool to directly execute programs from LLVM bitcode. The LLVM runtime is written in Java on top of the
 Truffle Language Implementation framework. In contrast to static compilation that is normally used for LLVM based languages, LLI first interprets
 the bitcode and then dynamically compiles the hot parts of the program using the GraalVM compiler. You can execute C/C++, Rust and any programming language that can be compiled to LLVM bitcode by the LLVM front end such as clang.
+
+Um das C++ Programm zu kompilieren, muss man den mitgelieferten Compiler nutzen:
+$LLVM_TOOLCHAIN/clang++ -fPIC -shared $SCRIPT_DIR/prime.cpp -lpolyglot-mock -o lib/prime.so
+    mit -shared: signalisiert man, das man ein shared object erzeugen möchte, dessen Funktionen von außerhalb aufgerufen werden sollen
+    mit polyglot-mock: library defines the polyglot API functions used in the example
+    mit -fPIC ist notwendig, sonst kompiliert das Programm nicht: Position Independent Code means that the generated machine code is not
+    dependent on being located at a specific address in order to work.
+Um die Polyglot API im C++ Programm anzubinden, muss man #include <graalvm/llvm/polyglot.h> hinzufügen
+Die Funktion kann aber nicht aufgerufen werden. Erst wenn sie in der Main-Methode durch polyglot_export("prime", &prime); exportiert werden kann.
+Die Typkonversionen laufen im Hintergrund
+return polyglot_from_string(result.c_str(), "ascii"); sonst funktioniert nicht wegen java.lang.ClassCastException: class com.oracle.truffle.llvm.runtime.debug.type.LLVMSourceStructLikeType cannot be cast to
+                                                                                     class com.oracle.truffle.llvm.runtime.debug.type.LLVMSourceClassLikeType
+
+
