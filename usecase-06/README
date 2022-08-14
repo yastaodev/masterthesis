@@ -1,4 +1,4 @@
-JS calls C and C++
+Java calls C and C++
     . C: Addition/Substraktion
     . C++: Multiplikation/Division
     https://chrisseaton.com/truffleruby/tenthings/
@@ -6,3 +6,15 @@ Bewusst redimentäre und simple Beispiele, um nicht mit Zeigern und Memory Manag
 Dynamic languages like JavaScript usually access object members by name. Since normally names are not preserved in LLVM bitcode, it must be
 compiled with debug information enabled (the LLVM toolchain shipped with GraalVM will automatically enable debugging information).
 https://www.graalvm.org/22.1/reference-manual/llvm/Interoperability/
+
+Besonderer Fall, da LLVM ein Zwichenformat ist
+There is one member of the GraalVM language family that is a bit special. While all the aforementioned languages are managed, so the language
+runtime manages all memory requirements, the LLVM runtime executes LLVM bitcode, which is unmanaged. That means there is no garbage collector
+that frees the memory automatically. Instead, users get their hands on raw pointers and need to maintain them manually. Also, arrays are not
+bounds-checked. The programmer is responsible for checking sizes.
+
+Im Gegensatz zu den interpretierten Sprachen(JS, Python, R, Ruby, etc.), wo man das Testen in verschiedenen Sprachen mixen konnte, ist es hier
+anders, da C/C++ kompilierte Sprachen sind.
+    Es mus also immer ein kompilierte Bitcode-File vorhanden sein. Dieses wird als Input eingegeben.
+    Müssen wie zwei verschiedene Projekte betrachtet werden.
+    Auf Java Seite kann nur das Ergebnis des LLVM-Output abgefragt und gecheckt werden
