@@ -20,3 +20,8 @@ anders, da C/C++ kompilierte Sprachen sind.
     Auf Java Seite kann nur das Ergebnis des LLVM-Output abgefragt und gecheckt werden.
     Keine Chance auf die Interna vom C++-Programm zu zugreifen.
     Die beiden Riesen: zwei konkurrierende GPLs welche die SW-Welt dominierten und religiöse Kriege auslösten
+    C++ Progs von Java aufrufen und umgekehrt
+
+It provides an implementation of the lli tool to directly execute programs from LLVM bitcode. The LLVM runtime is written in Java on top of the
+Truffle Language Implementation framework. In contrast to static compilation that is normally used for LLVM based languages, LLI first interprets
+the bitcode and then dynamically compiles the hot parts of the program using the GraalVM compiler. You can execute C/C++, Rust and any programming language that can be compiled to LLVM bitcode by the LLVM front end such as clang.

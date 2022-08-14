@@ -5,7 +5,9 @@ using namespace std;
 string prime(int low, int high);
 
 int main() {
-  cout << "C++: Prime numbers between " << low << " and " << high << " are: " + prime(0, 50) + '\n';
+  int low = 0;
+  int high = 50;
+  cout << "C++: Prime numbers between " << low << " and " << high << " are: " + prime(low, high) + '\n';
   return 0;
 }
 

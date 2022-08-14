@@ -8,4 +8,5 @@ cd $SCRIPT_DIR
 MAIN_DIR=$(realpath ../../..)
 cd $MAIN_DIR/target
 mkdir -p lib
-clang++ $SCRIPT_DIR/prime.cpp -o lib/prime
+export LLVM_TOOLCHAIN=$(lli --print-toolchain-path)
+$LLVM_TOOLCHAIN/clang++ $SCRIPT_DIR/prime.cpp -o lib/prime
