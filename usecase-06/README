@@ -17,4 +17,6 @@ Im Gegensatz zu den interpretierten Sprachen(JS, Python, R, Ruby, etc.), wo man 
 anders, da C/C++ kompilierte Sprachen sind.
     Es mus also immer ein kompilierte Bitcode-File vorhanden sein. Dieses wird als Input eingegeben.
     Müssen wie zwei verschiedene Projekte betrachtet werden.
-    Auf Java Seite kann nur das Ergebnis des LLVM-Output abgefragt und gecheckt werden
+    Auf Java Seite kann nur das Ergebnis des LLVM-Output abgefragt und gecheckt werden.
+    Keine Chance auf die Interna vom C++-Programm zu zugreifen.
+    Die beiden Riesen: zwei konkurrierende GPLs welche die SW-Welt dominierten und religiöse Kriege auslösten

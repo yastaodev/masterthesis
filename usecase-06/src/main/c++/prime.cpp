@@ -1,15 +1,19 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
-int main() {
+string prime(int low, int high);
 
-  int low, high, i;
+int main() {
+  cout << "C++: Prime numbers between " << low << " and " << high << " are: " + prime(0, 50) + '\n';
+  return 0;
+}
+
+string prime(int low, int high) {
+  int i;
   bool is_prime = true;
 
-  cout << "Enter two numbers (intervals): ";
-  cin >> low >> high;
-
-  cout << "\nPrime numbers between " << low << " and " << high << " are: " << endl;
+  string result = "";
 
   while (low < high) {
     is_prime = true;
@@ -26,11 +30,13 @@ int main() {
       }
     }
 
-    if (is_prime)
-      cout << low << ", ";
+    if (is_prime) {
+      result = result + std::to_string(low) + " ";
+    }
 
     ++low;
   }
 
-  return 0;
+  return result;
 }
+

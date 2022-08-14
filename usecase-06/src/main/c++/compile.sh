@@ -7,5 +7,5 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd $SCRIPT_DIR
 MAIN_DIR=$(realpath ../../..)
 cd $MAIN_DIR/target
-mkdir lib
+mkdir -p lib
 clang++ $SCRIPT_DIR/prime.cpp -o lib/prime
