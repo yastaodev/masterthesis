@@ -1,3 +1,5 @@
+Am Anfang: Ein paar Statistics: Wieviele Sprachen? wieviele Zeilen Code? Wieviele unterschiedliche Testframeworks?
+
 In diesem Fall ist es einfach: kleine Funktionen, man kann einfach die JS Funktionen in Java Funktionen wrappen
 und den Rückgabewert der Java-Funktion prüfen.
 Testeinheit ist die einzelne Methode

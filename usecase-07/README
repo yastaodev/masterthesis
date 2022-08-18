@@ -17,3 +17,7 @@ Interessant: Testen des Ergebnisses:
    Nur das Ergebnis zu testen bei kleinen Funktionen würde noch gehen, sobald der aufgerufene Code länger und komplizierter wird, muss dieser
    separat getestet werden.
 
+
+Wenn die Funktionen reine Funktionen ohne Seiteneffekte sind, dann empfiehlt es sich grundsätzlich, die Tests nur in einer Sprache zu schreiben,
+sei es die Quellsprache oder die Zielsprache.
+

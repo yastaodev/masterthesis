@@ -38,4 +38,9 @@ Die Typkonversionen laufen im Hintergrund
 return polyglot_from_string(result.c_str(), "ascii"); sonst funktioniert nicht wegen java.lang.ClassCastException: class com.oracle.truffle.llvm.runtime.debug.type.LLVMSourceStructLikeType cannot be cast to
                                                                                      class com.oracle.truffle.llvm.runtime.debug.type.LLVMSourceClassLikeType
 
+Wenn Gastsprache kein Ergebnis zurückliefert, sondern nur ausführt, wie z.B. Ausgabe eines Texts, dann die Funktion in der Gastsprache, denn da
+kann man nur das Ergebnis abfragen.
+Wir nehmen an, dass in fibonacci.c nur die main-Methode public ist. Andere Methoden sind nach Außen nicht sichtbar.
+
+Test direkt in fibonacci.c integriert.
 

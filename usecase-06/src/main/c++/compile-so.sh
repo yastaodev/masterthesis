@@ -10,3 +10,4 @@ cd $MAIN_DIR/target
 mkdir -p lib
 export LLVM_TOOLCHAIN=$(lli --print-toolchain-path)
 $LLVM_TOOLCHAIN/clang++ -fPIC -shared $SCRIPT_DIR/prime.cpp -lpolyglot-mock -o lib/prime.so
+
