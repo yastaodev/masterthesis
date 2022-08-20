@@ -14,6 +14,9 @@ def extractWords(text)
 
   sortWords = Polyglot.import_method("sortWords")
 
+  #        String[] expectedWords = {"Lorem", "amet", "consetetur", "diam", "dolor", "elitr", "ipsum", "sadipscing", "sed", "sit"};
+  # TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNldGV0dXIgc2FkaXBzY2luZyBlbGl0ciwgc2VkIGRpYW0=
+
   return sortWords(plainText)
 end
 

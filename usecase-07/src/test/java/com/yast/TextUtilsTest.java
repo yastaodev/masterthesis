@@ -6,7 +6,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
+import static java.util.Arrays.stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TextUtilsTest {
@@ -14,7 +16,15 @@ public class TextUtilsTest {
     @Test
     public void testExtractWords() throws IOException {
         String base64 = readText("/base64.txt");
-        testExtractWords();
+        String[] words = TextUtils.extractWords(base64);
+
+        assertNotNull(words);
+        assertEquals("At", words[0]);
+        assertEquals("At", words[1]);
+        assertEquals("gubergren", words[54]);
+        assertEquals("voluptua", words[99]);
+        assertEquals(8, stream(words).filter(w -> w.equals("et")).count());
+        assertEquals(4, stream(words).filter(w -> w.equals("sed")).count());
     }
 
     private String readText(String filePath) throws IOException {
@@ -32,6 +42,5 @@ public class TextUtilsTest {
         }
         return resultStringBuilder.toString();
     }
-
 
 }
