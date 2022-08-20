@@ -49,8 +49,8 @@ public class PrimeNumberUtils {
 
     private static void initContext() throws IOException {
         context = Context.newBuilder().allowAllAccess(true).build();
-        File file = new File("target/lib/prime.so");
-        Source source = Source.newBuilder("llvm", file).build();
+        File sharedObject = new File("target/lib/prime.so");
+        Source source = Source.newBuilder("llvm", sharedObject).build();
         Value cppProgram = context.eval(source);
         cppProgram.execute();
     }

@@ -1,8 +1,8 @@
 Poly-Polyglot
-Ruby ruft Python auf, Python ruft WebAssembly auf
-Idee: 2 mathematische Verfahren, z.B.
-    . returns Integer: Zählen von Wörtern in einem Text
-    . returns Text: Entfernen aller Leerzeichen
+Java ruft ruby auf, Python ruft JS auf
+    Java einlesen von Dateien mit base64 kodiertem Text
+    Ruby dekodiert die Texte und merget sie zusammen
+    JS sortiert die Wörter nach alphabetischer Reihenfolge
 
 https://www.graalvm.org/22.1/reference-manual/wasm/
 https://medium.com/graalvm/announcing-graalwasm-a-webassembly-engine-in-graalvm-25cd0400a7f2
@@ -10,8 +10,8 @@ https://medium.com/graalvm/announcing-graalwasm-a-webassembly-engine-in-graalvm-
 
 Interessant: Testen des Ergebnisses:
     nur in Java?
-    nur in Python?
-    nur in Assembly?
+    nur in Ruby?
+    nur in JS?
     oder in allen Sprachen, um die Redundanz zu erhalten?
     white-box vs black-box
    Nur das Ergebnis zu testen bei kleinen Funktionen würde noch gehen, sobald der aufgerufene Code länger und komplizierter wird, muss dieser
@@ -21,3 +21,16 @@ Interessant: Testen des Ergebnisses:
 Wenn die Funktionen reine Funktionen ohne Seiteneffekte sind, dann empfiehlt es sich grundsätzlich, die Tests nur in einer Sprache zu schreiben,
 sei es die Quellsprache oder die Zielsprache.
 
+Auch wieder pragmatisch ist zu schauen, ob die Funktionen viel Logik beinhalten oder einfach nur Bibliothek-Aufrufe enthalten.
+    In letztem Fall braucht man die die Sprachbibliotheken und -funktionen (wie z.B. Math.sqrt) nicht zu testen, sondern man schreibt stattdessen
+     nur die Integrationtests, um das Einlesen der Source und Evaluieren des Kontext zu testen.
+     Also sind die Unit-Tests in diesem Fall nutzlos.
+     Wenn keine Logik enthalten ist sondern nur Aufrufe zu externen Funktionen, dann gibt es halt nichts zu testen.
+     Man muss immer den Sinn der Tests nachfragen.
+
+
+Es ist notwendig, sonst funzt gar nichts
+    in ruby: Polyglot.import_method & Polyglot.export_method
+    in js: Polyglot.export('extractWords', extractWords);
+
+Am Ende wird in Java ein JSArrayObject geliefert. Also die Typkonversion läuft nahtlos, auch über mehrere Sprache hinweg.
