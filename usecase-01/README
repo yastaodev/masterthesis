@@ -58,3 +58,4 @@ Batch-Skript vor, das alle Emails, IBANs, etc. validiert. Enormer Gewinn
 
 # Keine Notwendgigkeit, Tests in JS zu schreiben.
 
+# Erwähnen, dass zunächst die GraalVM Demos zum Laufen gebracht werden sollen, bevor dieses Code ausgeführt wird. dami

@@ -9,13 +9,14 @@ def extractWords(text)
 
   # puts plainText
   # puts File.basename(Dir.getwd)
+  #
+  pwd = File.expand_path(File.dirname(__FILE__))
+  Dir.chdir pwd
+  puts pwd
 
-  Polyglot.eval_file("js", "src/main/javascript/TextUtils.js")
+  Polyglot.eval_file("js", "../javascript/TextUtils.js")
 
   sortWords = Polyglot.import_method("sortWords")
-
-  #        String[] expectedWords = {"Lorem", "amet", "consetetur", "diam", "dolor", "elitr", "ipsum", "sadipscing", "sed", "sit"};
-  # TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNldGV0dXIgc2FkaXBzY2luZyBlbGl0ciwgc2VkIGRpYW0=
 
   return sortWords(plainText)
 end

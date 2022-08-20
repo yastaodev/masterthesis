@@ -34,3 +34,23 @@ Es ist notwendig, sonst funzt gar nichts
     in js: Polyglot.export('extractWords', extractWords);
 
 Am Ende wird in Java ein JSArrayObject geliefert. Also die Typkonversion läuft nahtlos, auch über mehrere Sprache hinweg.
+
+Der Java-Test dient als Integrationstest, da Ruby und JS aufgerufen werden
+Ruby wird auch getestet. auch hier ein Integrationstest, um zu prüfen, ob JS korrekt aufgerufen werden.
+In JS kein Test, da am Ende ein Ergebnis zurückgeliefert wird, den man dann überprüfen kann.
+
+Das gleiche Thema: auch hier muss man entscheiden, ob aus den Java Junit Tests die Ruby Unit Tests aufgerufen werden sollen mittels der Polyglot
+API oder auch nicht. Ich sehe hier keine Notwendigkeit. Die können ruhig separat ausgeführt werden, um maximale Redundanz zu erreichen.
+
+In diesem Beispiel wurden Sprachen nur 3 Ebenen verschachtelt. Es könnnen aber noch mehr werden.
+    Hier ist der pragmatische Ansatz, so weit wie möglich Tests in Gastsprachen zu vermeiden, und nur in der Hostsprache zu schreiben. Da man
+    sonst den Überblick verlieren könnte vor lauter Anzahl von Tools und Frameworks.
+    Wenn die Gastsprachen kein Ergebnisse liefern, sondern void sind, dann hat man leider keine Wahl.
+    Was man dann machen könnte, ist eine Pipelien zu erzeugen, welche die ganzen Tests hintereinander ausführt, wenn die Unit-Tests-Frameworks
+    dies zulassen, wie z.B. ruby, python und JS. Also sowas wie eine TestSuite, welche die Tests nacheinander trigger, auch sprachübergreifend.
+    Hier müssen nicht nur die Tests angetriggert werden, das Ergebnis muss aber auch überprüft werden und weitergeben.
+    Aber wenn das nicht möglich ist, wie bei C/C++ z.B., dann könnte man die Tests in der Gastsprache schreiben und schließlich mittels der
+    Polyglot API aufrufen.
+    Man muss dann den Aufwand abwägen.
+
+ruby --polyglot TextUtilsTest.rb (--polyglot nicht vergessen)
