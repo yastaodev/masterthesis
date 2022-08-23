@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="master-thesis" />
+        <module name="usecase-08" />
         <module name="usecase-07" />
         <module name="usecase-06" />
         <module name="usecase-05" />
@@ -18,7 +19,6 @@
       <module name="master-thesis" target="17" />
       <module name="untitled" target="17" />
       <module name="use-case-08" target="1.5" />
-      <module name="usecase-08" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
